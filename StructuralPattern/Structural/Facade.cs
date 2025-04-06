@@ -1,6 +1,6 @@
 using Spectre.Console;
 
-namespace StructuralPattern;
+namespace StructuralPattern.Structural;
 
 public class Engine
 {
@@ -12,7 +12,7 @@ public class Model
 }
 public class Color
 {
-    public static string Blue() => "[blue]Red color[/]";
+    public static string Blue() => "[blue]Blue color[/]";
 }
 
 

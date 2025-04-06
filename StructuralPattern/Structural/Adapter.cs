@@ -1,32 +1,27 @@
 using Spectre.Console;
 
-namespace StructuralPattern;
+namespace StructuralPattern.Structural;
 
 public interface IEuroCar
 {
     void Display(string car);
 }
 
-public class AmericarCar
+public class AmericanCar
 {
-    public void AmericanCar(string car)
+    public static void AmericarCar(string car)
     {
         AnsiConsole.Markup($"\n[green]American car: {car}[/]\n");
     }
 }
 
-public class CarAdapter : IEuroCar
+public class CarAdapter(AmericanCar americanCar) : IEuroCar
 {
-    private readonly AmericarCar _americarCar;
-    
-    public CarAdapter(AmericarCar americarCar)
-    {
-        _americarCar = americarCar;
-    }
-    
+    public AmericanCar Car { get; } = americanCar;
+
     public void Display(string car)
     {
-        _americarCar.AmericanCar(car);
+        AmericanCar.AmericarCar(car);
     }
 }
 
@@ -34,8 +29,7 @@ public abstract class Adapter
 {
     public static void Run()
     {
-        IEuroCar euroCar;
-        euroCar = new CarAdapter(new AmericarCar());
+        IEuroCar euroCar = new CarAdapter(new AmericanCar());
         euroCar.Display("Chevrolet Camaro");
     }
 }
